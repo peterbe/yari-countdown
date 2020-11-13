@@ -19,6 +19,11 @@
       rel="stylesheet"
     />
 
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
+    />
+
     <style>
       body {
         margin: 0;
@@ -587,6 +592,30 @@
         }
       }
     </style>
+
+    <style>
+      audio {
+        display: none;
+      }
+      button#button {
+        font-size: 16px;
+        color: rgb(215, 83, 83);
+        position: absolute;
+        top: 100px;
+        right: 100px;
+        transform: translate(-50%, -50%);
+        width: 50px;
+        padding: 15px;
+        border: none;
+        border-radius: 2px;
+        outline: none;
+        background: rgba(244, 244, 244, 0.8);
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        opacity: 0.8;
+        cursor: pointer;
+        transition: all 0.4s ease-out;
+      }
+    </style>
   </head>
   <body>
     <div class="wrap">
@@ -707,17 +736,47 @@
       <h1 style="clear: left; padding-top: 40px; font-size: 5.5em">
         <a href="https://github.com/mdn/yari" style="color: #444">to Yari</a>
       </h1>
-      <!-- <p class="blurb">
-        Estimated date of launching
-        <a href="https://github.com/mdn/yari">Yari</a> is
-        <b class="due-date"></b>.
-      </p> -->
+
+      <button id="button">
+        <i class="fas fa-volume-up"></i>
+      </button>
     </div>
+
+    <audio src="song.mp3" preload="auto"></audio>
+
+    <script>
+      const button = document.querySelector("#button");
+      const icon = document.querySelector("#button > i");
+      const audio = document.querySelector("audio");
+
+      button.addEventListener("click", () => {
+        if (audio.paused) {
+          //audio.volume = 0.2;
+          audio.currentTime += 12.0;
+          audio.play();
+          icon.classList.remove("fa-volume-up");
+          icon.classList.add("fa-volume-mute");
+        } else {
+          audio.pause();
+          icon.classList.remove("fa-volume-mute");
+          icon.classList.add("fa-volume-up");
+        }
+        button.classList.add("fade");
+      });
+    </script>
 
     <script src="jquery.min.js"></script>
     <script src="TweenMax.min.js"></script>
-
+<style>
+  xxx {color:rgb(240, 240, 240)}
+</style>
     <script>
+      console.log(
+        "%c 🎄 This is a temporary site by the MDN team to celebrate the " +
+          "upcoming release of the MDN Web Docs (developer.mozilla.org) rewrite. \n" +
+          "Check it out on https://github.com/mdn/yari",
+        "background: rgb(240, 240, 240); color: rgb(215, 83, 83); font-size: 20px"
+      );
       var DUE_DATE = new Date("2020-12-14T13:39:00Z");
 
       function itsOver() {
